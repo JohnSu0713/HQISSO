@@ -76,13 +76,9 @@ class QuantumPop():
         for i in range(self.PopSize):
             for j in range(self.solSize):
                 # print(f"Update Q global by sol_{i}, bit_{j}")
-
                 ###################### Rotate Qgbest ######################
-
                 g_alpha = self.Qgbest[j, 0]
                 g_beta = self.Qgbest[j, 1]
-                # print(f"g_alpha: {g_alpha}")
-                # print(f"g_beta: {g_beta}")
 
                 angle_recorder_global = AngleRecorder()
                 angle_recorder_global.lookup_theta(
@@ -100,25 +96,12 @@ class QuantumPop():
                 # update alpha, beta squared
                 self.Qgbest_sqr[j, 0] = np.round(pow(self.Qgbest[j, 0], 2), 3)
                 self.Qgbest_sqr[j, 1] = np.round(pow(self.Qgbest[j, 1], 2), 3)
-                # print(f"g_alpha after update: {self.Qgbest[j, 0]}")
-                # print(f"g_beta after update: {self.Qgbest[j, 1]}")
-                # print()
-
                 ###################### Rotate Qpbest ######################
                 # Lookup table of the rotation angle
         for i in range(self.PopSize):
-            # print(f"cpv.fitness[{i}]: {cpv.fitness[i]}")
-            # print(f"pbest_fitness[{i}]: {FitnessAgent.pbest_fitness[i]}")
-            # print(f"cpv.binary_solution: {cpv.binary_solution[i]}")
-            # print(f"FitnessAgent.pbest_sol[{i}]: {FitnessAgent.pbest_sol[i]}")
-
             for j in range(self.solSize):
                 p_alpha = self.qpv[i, j, 0]
                 p_beta = self.qpv[i, j, 1]
-                # print(f"p_alpha: {p_alpha}")
-                # print(f"p_beta: {p_beta}")
-                # print(f"Update Qpbest sol_{i}, bit_{j}")
-
                 angle_recorder_p = AngleRecorder()
                 angle_recorder_p.lookup_theta(
                     cpv.fitness[i], FitnessAgent.pbest_fitness[i], cpv.binary_solution[i, j], FitnessAgent.pbest_sol[i, j], p_alpha, p_beta)
@@ -133,21 +116,19 @@ class QuantumPop():
                 # update alpha, beta squared
                 self.qpv_sqr[i, j, 0] = np.round(pow(self.qpv[i, j, 0], 2), 3)
                 self.qpv_sqr[i, j, 1] = np.round(pow(self.qpv[i, j, 1], 2), 3)
-                # print(f"p_alpha after update: {self.qpv[i, j, 0]}")
-                # print(f"p_beta after update: {self.qpv[i, j, 1]}")
                 # print()
 
     def show_Qpopulation(self):
         print(f"========== Quantum Population ==========")
-        print(f"########## Quantum Gbest ##########")
-        for j in range(self.solSize):
-            print(self.Qgbest[j, 0], end="")
-            print("||", end="")
-        print()
-        for j in range(self.solSize):
-            print(self.Qgbest[j, 1], end="")
-            print("||", end="")
-        print()
+        # print(f"########## Quantum Gbest ##########")
+        # for j in range(self.solSize):
+        #     print(np.round(self.Qgbest[j, 0], 3), end="")
+        #     print("||", end="")
+        # print()
+        # for j in range(self.solSize):
+        #     print(self.Qgbest[j, 1], end="")
+        #     print("||", end="")
+        # print()
         print(f"########## Quantum Gbest Sqr ##########")
         for j in range(self.solSize):
             print(self.Qgbest_sqr[j, 0], end="")
@@ -160,16 +141,16 @@ class QuantumPop():
 
         print(f"########## Quantum Pbest ##########")
         for i in range(self.PopSize):
-            print(f"\n\nqpv {i} :")
-            print()
-            for j in range(self.solSize):
-                print(self.qpv[i, j, 0], end="")
-                print("||", end="")
-            print()
-            for j in range(self.solSize):
-                print(self.qpv[i, j, 1], end="")
-                print("||", end="")
-            print()
+            # print(f"\n\nqpv {i} :")
+            # print()
+            # for j in range(self.solSize):
+            #     print(np.round(self.qpv[i, j, 0], 3), end="")
+            #     print("||", end="")
+            # print()
+            # for j in range(self.solSize):
+            #     print(np.round(self.qpv[i, j, 1], 3), end="")
+            #     print("||", end="")
+            # print()
             print(f"\nqpv_sqr {i} :")
             print()
             for j in range(self.solSize):

@@ -49,25 +49,25 @@ class Core():
         if (task[2] <= STi) and (STi <= (task[4] - task[3])) and ((task[2] + task[3]) <= FTi) and (FTi <= task[4]):
             return True
         else:
-            print(f"Fail to schedule: task_{int(task[0])}")
+            # print(f"Fail to schedule: task_{int(task[0])}")
             ######### Debug ##########
-            # [[idx, Ai, Ri, Ci, Di]]
-            print("Index: ", task[0])
-            print("STi: ", STi)
-            print("FTi: ", FTi)
-            print("Ri: ", task[2])
-            print("Ci: ", task[3])
-            print("Di: ", task[4])
+            # # [[idx, Ai, Ri, Ci, Di]]
+            # print("Index: ", task[0])
+            # print("STi: ", STi)
+            # print("FTi: ", FTi)
+            # print("Ri: ", task[2])
+            # print("Ci: ", task[3])
+            # print("Di: ", task[4])
+            # # print()
+            # if task[2] > self.STi:
+            #     print("Ri > STi")
+            # if self.STi > task[4] - task[3]:
+            #     print("STi > Di - Ci")
+            # if task[2] + task[3] > FTi:
+            #     print("Ri + Ci > FTi")
+            # if FTi > task[4]:
+            #     print("FTi > Di")
             # print()
-            if task[2] > self.STi:
-                print("Ri > STi")
-            if self.STi > task[4] - task[3]:
-                print("STi > Di - Ci")
-            if task[2] + task[3] > FTi:
-                print("Ri + Ci > FTi")
-            if FTi > task[4]:
-                print("FTi > Di")
-            print()
             ######## Debug ##########
             return False
 

@@ -18,12 +18,11 @@ class TaskQueue():
         # task[0]: index
         self.task_queue[:, 0] = np.arange(1, self.Ntasks + 1)
         # task[1]: Ai
-        self.task_queue[:, 1] = np.round(
-            np.arange(0, self.Ntasks * 0.05, 0.05), 2)
+        # self.task_queue[:, 1] = np.round(
+        #     np.arange(0, self.Ntasks * 0.05, 0.05), 2)
         # task[2]: Ri
         for task in self.task_queue:
-            task[2] = np.random.uniform(
-                int(task[1]), int(task[1]) + Ri_param * Ncore)
+            task[2] = np.random.uniform(0, Ri_param * Ncore)
         # task[3]: Ci
         self.task_queue[:, 3] = np.random.uniform(
             self.min_c, self.max_c, self.Ntasks)
@@ -31,6 +30,10 @@ class TaskQueue():
         for task in self.task_queue:
             task[4] = np.random.uniform(
                 task[2] + Di_lowerB * task[3], task[2] + Di_upperB * task[3])
+        self.task_queue = globalFunc.sort_task(self.task_queue)
+        # task[1]: Ai
+        self.task_queue[:, 1] = np.round(
+            np.arange(0, self.Ntasks * 0.05, 0.05), 2)
 
         self.unscheduled_tasks = self.task_queue[:, 0]
 
@@ -52,6 +55,7 @@ class ReadyQueue():
     def set_task_spec(self):
         pass
 
+    ###### get arrived tasks according to Ai < t ######
     def get_arrived_tasks(self, TaskQueue, t):
         # 1. load the tasks from task_queue and sorted by EDF
         ready_queue = globalFunc.sort_task(
