@@ -1,6 +1,5 @@
 import numpy as np
 import time
-
 from globals import *
 from core import Core
 from classical_pop import ClassicalPop
@@ -16,9 +15,6 @@ Cores = [Core() for i in range(Ncore)]
 TaskQ = TaskQueue(Ntasks)
 TaskQ.init_tasks(Ncore)
 ############## First Task Assignment ################
-# show_queue(TaskQ.task_queue)
-sort_taskQ = sort_task(TaskQ.task_queue)
-print()
 
 print(f"current time：{t}")
 readyQ = ReadyQueue()
@@ -43,6 +39,7 @@ while TaskQ.unscheduled_tasks.size != 0:
 # simulation_iter(t=1, PopSize=PopSize, Ncore=Ncore, TaskQ=TaskQ, Cores=Cores)
 #####################################
 # show_queue(TaskQ.task_queue)
+
 show_Cores(Cores)
 ############## Schedule End #################
 end_t = time.time()

@@ -41,4 +41,5 @@ class FitnessAgent():
         print("############ pbest ############")
         for i in range(self.PopSize):
             print(
-                f"pbest_{i} schedule | {self.pbest_tasks_schedule[i]} | fitness: {self.pbest_fitness[i]}")
+                # f"pbest_{i} schedule | {self.pbest_tasks_schedule[i]} | fitness: {self.pbest_fitness[i]}")
+                f"schedule_{i} | {self.pbest_tasks_schedule[i]} | fitness: {self.pbest_fitness[i]}")

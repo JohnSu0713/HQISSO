@@ -167,7 +167,7 @@ def simulation_iter(t, PopSize, Ncore, TaskQ, Cores, GEN_MAX=generation_max):
             cpv.fitness[i] = fitness
         print(f"cpv.fitness: ", cpv.fitness)
         fitness_agent.best_update(cpv)
-        # fitness_agent.show_best()
+        fitness_agent.show_best()
         # cpv.show_ClassicalPopulation()
         # qpv.show_Qpopulation()
         GEN += 1

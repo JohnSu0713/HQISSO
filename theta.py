@@ -10,13 +10,6 @@ class AngleRecorder():
 
     def lookup_theta(self, f_x, f_b, xi, bi, alpha, beta):
         cond = (f_x >= f_b)
-        # print(f"f_x > f_b: ", f_x > f_b)
-        # print(f"f_x: ", f_x)
-        # print(f"f_b: ", f_b)
-        # print(f"xi: ", xi)
-        # print(f"bi: ", bi)
-        # print()
-
         # if 𝑓(𝑥) > 𝑓(gbest): FALSE
         if cond == False:
             # print("𝑓(𝑥) <= 𝑓(gbest): 沒有比較好！！")
