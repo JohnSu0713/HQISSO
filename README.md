@@ -1,4 +1,2 @@
 # QSSO
-## NEED Adjustment
-
-1. Change to regard Ai 
+## NEED Adjustment: Current None
