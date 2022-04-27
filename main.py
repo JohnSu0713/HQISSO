@@ -2,6 +2,7 @@ import numpy as np
 import time
 from globals import *
 from core import Core
+from plot import PlotTool
 from classical_pop import ClassicalPop
 from quantum_pop import QuantumPop
 from best import FitnessAgent
@@ -45,3 +46,5 @@ show_Cores(Cores)
 end_t = time.time()
 duration = end_t - start_t
 print(f"Time Cost: {duration}")
+gantt = PlotTool(Ncore)
+gantt.plot_gantt(Cores)

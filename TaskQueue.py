@@ -1,5 +1,6 @@
 import globalFunc
 from globals import *
+from factor import *
 import numpy as np
 np.set_printoptions(precision=2)
 np.set_printoptions(suppress=True)
@@ -13,13 +14,15 @@ class TaskQueue():
         self.unscheduled_tasks = None
         self.min_c = min_c
         self.max_c = max_c
+        self.Di_LowerB = None
+        self.Di_UpperB = None
 
     def init_tasks(self, Ncore):
         # task[0]: index
         self.task_queue[:, 0] = np.arange(1, self.Ntasks + 1)
         # task[1]: Ai
-        # self.task_queue[:, 1] = np.round(
-        #     np.arange(0, self.Ntasks * 0.05, 0.05), 2)
+        self.task_queue[:, 1] = np.round(
+            np.arange(0, self.Ntasks * 0.05, 0.05), 2)
         # task[2]: Ri
         for task in self.task_queue:
             task[2] = np.random.uniform(0, Ri_param * Ncore)
@@ -32,8 +35,8 @@ class TaskQueue():
                 task[2] + Di_lowerB * task[3], task[2] + Di_upperB * task[3])
         self.task_queue = globalFunc.sort_task(self.task_queue)
         # task[1]: Ai
-        self.task_queue[:, 1] = np.round(
-            np.arange(0, self.Ntasks * 0.05, 0.05), 2)
+        # self.task_queue[:, 1] = np.round(
+        #     np.arange(0, self.Ntasks * 0.05, 0.05), 2)
 
         self.unscheduled_tasks = self.task_queue[:, 0]
 
@@ -45,6 +48,23 @@ class TaskQueue():
     def update_unscheduled_tasks(self, scheduled_tasks):
         self.unscheduled_tasks = self.unscheduled_tasks[~np.isin(
             self.unscheduled_tasks, scheduled_tasks)]
+
+    def get_Di_Bound(self):
+        if self.Ntasks == 100:
+            self.Di_LowerB = Di_lowerB * lf_100
+            self.Di_UpperB = Di_upperB * uf_100
+        elif self.Ntasks == 200:
+            self.Di_LowerB = Di_lowerB * lf_200
+            self.Di_UpperB = Di_upperB * uf_200
+        elif self.Ntasks == 300:
+            self.Di_LowerB = Di_lowerB * lf_200
+            self.Di_UpperB = Di_upperB * uf_200
+        elif self.Ntasks == 400:
+            self.Di_LowerB = Di_lowerB * lf_200
+            self.Di_UpperB = Di_upperB * uf_200
+        elif self.Ntasks == 600:
+            self.Di_LowerB = Di_lowerB * lf_200
+            self.Di_UpperB = Di_upperB * uf_200
 
 
 class ReadyQueue():

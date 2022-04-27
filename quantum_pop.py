@@ -71,7 +71,8 @@ class QuantumPop():
         # print("Rot: \n", rot)
         return rot
 
-    def rotate(self, cpv, FitnessAgent):
+    def rotate(self, cpv, FitnessAgent, GEN):
+
         # Lookup table of the rotation angle
         for i in range(self.PopSize):
             for j in range(self.solSize):
@@ -81,8 +82,9 @@ class QuantumPop():
                 g_beta = self.Qgbest[j, 1]
 
                 angle_recorder_global = AngleRecorder()
-                angle_recorder_global.lookup_theta(
-                    cpv.fitness[i], FitnessAgent.gbest_fitness, cpv.binary_solution[i, j], FitnessAgent.gbest_sol[j], g_alpha, g_beta)
+                # angle_recorder_global.lookup_theta(
+                #     cpv.fitness[i], FitnessAgent.gbest_fitness, cpv.binary_solution[i, j], FitnessAgent.gbest_sol[j], g_alpha, g_beta)
+                angle_recorder_global.FVDAA(FitnessAgent.gbest_fitness, cpv.fitness[i])
                 delta_theta = angle_recorder_global.delta_theta
                 rot = self.get_rot_matrix(delta_theta)
                 next_Qgbest_alpha = (
